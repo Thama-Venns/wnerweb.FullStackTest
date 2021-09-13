@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="p-5 text-center">
+
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            {{ errorMessage }}
+        </div>
+
+        <h1>{{ '::Welcome' | abpLocalization }}</h1>
+
+        <p class="lead px-lg-5 mx-lg-5">{{ '::LongWelcomeMessage' | abpLocalization }}</p>
+
+        <input class="file-input" type="file" accept=".pmr" (change)="onFileSelected($event)" #fileUpload>
+
+        <div *ngIf="!fileName" class="file-upload">
+            No file uploaded yet <br><br>
+            <a (click)="fileUpload.click()" class="px-4 btn btn-primary ml-1" role="button"><i class="fa fa-sign-in"></i> Upload</a>
+        </div>
+
+        <div *ngIf="fileName" class="file-upload">
+            {{ fileName }} <br><br>
+            <a (click)="submit()" *ngIf="!loadedFileId" class="px-4 btn btn-primary ml-1" role="button"><i class="fa fa-paper-plane"></i> Submit</a>
+            <a (click)="cancel()" *ngIf="!loadedFileId" class="px-4 btn btn-danger ml-1" role="button"><i class="fa fa-ban"></i> Cancel</a>
+            <a (click)="getFile(loadedFileId)" *ngIf="loadedFileId" class="px-4 btn btn-Success ml-1" role="button"><i class="fa fa-eye"></i> View File</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="p-5 text-center">
+        <div *ngIf="!loadedFileId && !result">
+            <h3><i class="fa fa-files-o"></i> View Files</h3><br><br>
+
+            <ul class="list-group" *ngFor="let file of files">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="px-4 btn btn-Success ml-1" role="button">
+                        <i class="fa fa-file"></i> {{ file.name }}
+                    </a>
+                    <span (click)="getFile(file.id.toString())" class="badge badge-primary badge-pill"><i class="fa fa-eye"></i> View</span>
+                </li>
+            </ul>
+
+        </div>
+
+        <br><br>
+
+        <div *ngIf="result">
+            <a (click)="reset()" class="px-4 btn btn-success ml-1" role="button"><i class="fa fa-files-o"></i> View Files</a><br>
+            <h2>{{ result.header.fileName }}</h2>
+            <pre>{{ result | json }}</pre>
+        </div>
+    </div>
+</div>
+
+
+<style scoped>
+    .col-lg-2.border-left:nth-of-type(6n + 1) {
+        border-left: 0 !important;
+    }
+    
+    .col-lg-4.border-left:nth-of-type(3n + 1) {
+        border-left: 0 !important;
+    }
+    
+    @media (max-width: 991px) {
+        .border-left {
+            border-left: 0 !important;
+        }
+    }
+</style>

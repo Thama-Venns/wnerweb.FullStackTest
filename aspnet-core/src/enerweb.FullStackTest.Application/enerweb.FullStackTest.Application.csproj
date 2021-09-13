@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>enerweb.FullStackTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\enerweb.FullStackTest.Domain\enerweb.FullStackTest.Domain.csproj" />
+    <ProjectReference Include="..\enerweb.FullStackTest.Application.Contracts\enerweb.FullStackTest.Application.Contracts.csproj" />
+    <ProjectReference Include="..\enerweb.FullStackTest.EntityFrameworkCore\enerweb.FullStackTest.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="4.4.1" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="4.4.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.4.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="4.4.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.4.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="4.4.1" />
+  </ItemGroup>
+
+</Project>
